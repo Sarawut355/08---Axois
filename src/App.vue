@@ -16,7 +16,10 @@
         >
       </b-nav-form>
     </b-navbar>
-    <router-view :index="index" />
+    <router-view :page="page" />
+    <!-- <b-button size="sm" @click="Page1()" type="submit">1-100</b-button
+    ><b-button size="sm" @click="Page2()" type="submit">101-200</b-button
+    ><b-button size="sm" @click="Page3()" type="submit">201-300</b-button> -->
   </div>
 </template>
 <script>
@@ -24,9 +27,10 @@ import axios from "axios";
 export default {
   data() {
     return {
+      page: 1,
       sh: "",
       animeList: null,
-      url: "https://api.jikan.moe/v3/producer/1/1"
+      url: ""
     };
   },
   methods: {
@@ -35,7 +39,9 @@ export default {
       for (let i = 0; i <= this.animeList.anime.length; i++) {
         if (this.sh == this.animeList.anime[i].title) {
           alert(this.animeList.anime[i].title);
-          router.push(`/anime/${i}/${this.animeList.anime[i].title}`);
+          router.push({
+            path: `/anime/${this.animeList.anime[i].mal_id}`
+          });
           break;
         } else if (99 == i) {
           router.push({
@@ -44,14 +50,18 @@ export default {
         }
       }
     },
-    test() {
-      const router = this.$router;
-      router.push({
-        path: `/anime/${1}/${this.animeList.anime[1].title}`
-      });
+    Page1() {
+      this.page = 1;
+    },
+    Page2() {
+      this.page = 2;
+    },
+    Page3() {
+      this.page = 3;
     }
   },
   mounted() {
+    this.url = `https://api.jikan.moe/v3/producer/1/${this.page}`;
     axios
       .get(this.url)
       .then(result => {

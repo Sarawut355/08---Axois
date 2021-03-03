@@ -1,6 +1,6 @@
 <template>
   <div>
-    <router-link :to="`/anime/${this.index}/${Name}`" class="col-3">
+    <router-link :to="`/anime/${this.id}`" class="col-3">
       <b-card
         border-variant="info"
         :header="Name"
@@ -17,6 +17,7 @@
 <script>
 export default {
   props: {
+    id: Number,
     index: Number,
     Name: String,
     Img: String

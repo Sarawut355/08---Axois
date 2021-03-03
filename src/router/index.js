@@ -11,7 +11,7 @@ const routes = [
     component: Home
   },
   {
-    path: "/anime/:id/:name",
+    path: "/anime/:id",
     name: "Anime",
     component: () => import("../views/Anime.vue")
   }

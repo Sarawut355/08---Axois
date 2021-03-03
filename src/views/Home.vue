@@ -7,7 +7,7 @@
         :key="index"
         :Name="item.title"
         :Img="item.image_url"
-        :index="index"
+        :id="item.mal_id"
         class="col-3"
       />
     </div>
@@ -23,10 +23,13 @@ export default {
   components: {
     MainPage
   },
+  props: {
+    page: Number
+  },
   data() {
     return {
       animeList: null,
-      url: "https://api.jikan.moe/v3/producer/1/1"
+      url: `https://api.jikan.moe/v3/producer/1/${this.page}`
     };
   },
   mounted() {

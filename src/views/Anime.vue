@@ -5,15 +5,17 @@
         <b-img
           thumbnail
           fluid
-          :src="animeList.anime[id].image_url"
+          :src="animeList.image_url"
           alt="Fluid image"
           style="height: 40rem; width: 30rem"
         ></b-img>
-        <b class="Name-Anime">{{ animeList.anime[id].title }}</b>
+        <b class="Name-Anime"
+          >{{ animeList.title }} ( {{ animeList.title_japanese }} )</b
+        >
         <div class="row Genres">
           <b>Genres:</b>
           <b
-            v-for="(item, index) in animeList.anime[id].genres"
+            v-for="(item, index) in animeList.genres"
             :key="index"
             class="offset-md-1"
           >
@@ -23,8 +25,9 @@
       </div>
       <div class="col-8">
         <p class="Trailer-Anime">
-          {{ animeList.anime[id].synopsis }}
+          {{ animeList.synopsis }}
         </p>
+        <iframe width="420" height="345" :src="animeList.trailer_url"> </iframe>
       </div>
     </div>
   </div>
@@ -35,10 +38,8 @@ import axios from "axios";
 export default {
   data() {
     return {
-      id: 0,
       animeList: null,
-      param: this.$route.params.id,
-      url: "https://api.jikan.moe/v3/producer/1/1"
+      url: `https://api.jikan.moe/v3/anime/${this.$route.params.id}`
     };
   },
   mounted() {
@@ -51,7 +52,6 @@ export default {
         console.log(err);
         alert(err);
       });
-    this.id = this.$route.params.id;
   }
 };
 </script>
