@@ -1,6 +1,5 @@
 <template>
   <div class="container col-10" style="height: 60rem">
-    {{ id }}
     <div class="row">
       <div class="col-3">
         <b-img
@@ -38,6 +37,7 @@ export default {
     return {
       id: 0,
       animeList: null,
+      param: this.$route.params.id,
       url: "https://api.jikan.moe/v3/producer/1/1"
     };
   },

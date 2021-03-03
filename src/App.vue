@@ -35,7 +35,7 @@ export default {
       for (let i = 0; i <= this.animeList.anime.length; i++) {
         if (this.sh == this.animeList.anime[i].title) {
           alert(this.animeList.anime[i].title);
-          router.push(`/anime/${i}${this.animeList.anime[i].title}`);
+          router.push(`/anime/${i}/${this.animeList.anime[i].title}`);
           break;
         } else if (99 == i) {
           router.push({
@@ -47,7 +47,7 @@ export default {
     test() {
       const router = this.$router;
       router.push({
-        path: `/anime/${1}${this.animeList.anime[1].title}`
+        path: `/anime/${1}/${this.animeList.anime[1].title}`
       });
     }
   },
